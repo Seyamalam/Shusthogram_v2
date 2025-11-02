@@ -165,100 +165,34 @@ const PurePreviewMessage = ({
               }
             }
 
-            if (type === "tool-getWeather") {
-              const { toolCallId, state } = part;
+            // Health tools - generic display for all health tool calls
+            if (
+              type === "tool-symptomTriage" ||
+              type === "tool-healthFacilityLocator" ||
+              type === "tool-healthRecord" ||
+              type === "tool-vaccinationReminder" ||
+              type === "tool-healthEducation" ||
+              type === "tool-diseaseOutbreakAlert"
+            ) {
+              const toolPart = part as any; // Type cast for health tools
+              const { toolCallId, state } = toolPart;
 
               return (
                 <Tool defaultOpen={true} key={toolCallId}>
-                  <ToolHeader state={state} type="tool-getWeather" />
+                  <ToolHeader state={state} type={type as any} />
                   <ToolContent>
                     {state === "input-available" && (
-                      <ToolInput input={part.input} />
-                    )}
-                    {state === "output-available" && (
-                      <ToolOutput
-                        errorText={undefined}
-                        output={<Weather weatherAtLocation={part.output} />}
-                      />
-                    )}
-                  </ToolContent>
-                </Tool>
-              );
-            }
-
-            if (type === "tool-createDocument") {
-              const { toolCallId } = part;
-
-              if (part.output && "error" in part.output) {
-                return (
-                  <div
-                    className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-500 dark:bg-red-950/50"
-                    key={toolCallId}
-                  >
-                    Error creating document: {String(part.output.error)}
-                  </div>
-                );
-              }
-
-              return (
-                <DocumentPreview
-                  isReadonly={isReadonly}
-                  key={toolCallId}
-                  result={part.output}
-                />
-              );
-            }
-
-            if (type === "tool-updateDocument") {
-              const { toolCallId } = part;
-
-              if (part.output && "error" in part.output) {
-                return (
-                  <div
-                    className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-500 dark:bg-red-950/50"
-                    key={toolCallId}
-                  >
-                    Error updating document: {String(part.output.error)}
-                  </div>
-                );
-              }
-
-              return (
-                <div className="relative" key={toolCallId}>
-                  <DocumentPreview
-                    args={{ ...part.output, isUpdate: true }}
-                    isReadonly={isReadonly}
-                    result={part.output}
-                  />
-                </div>
-              );
-            }
-
-            if (type === "tool-requestSuggestions") {
-              const { toolCallId, state } = part;
-
-              return (
-                <Tool defaultOpen={true} key={toolCallId}>
-                  <ToolHeader state={state} type="tool-requestSuggestions" />
-                  <ToolContent>
-                    {state === "input-available" && (
-                      <ToolInput input={part.input} />
+                      <ToolInput input={toolPart.input} />
                     )}
                     {state === "output-available" && (
                       <ToolOutput
                         errorText={undefined}
                         output={
-                          "error" in part.output ? (
-                            <div className="rounded border p-2 text-red-500">
-                              Error: {String(part.output.error)}
-                            </div>
-                          ) : (
-                            <DocumentToolResult
-                              isReadonly={isReadonly}
-                              result={part.output}
-                              type="request-suggestions"
-                            />
-                          )
+                          <div className="rounded border p-3">
+                            <pre className="whitespace-pre-wrap text-sm">
+                              {JSON.stringify(toolPart.output, null, 2)}
+                            </pre>
+                          </div>
                         }
                       />
                     )}
