@@ -118,11 +118,12 @@ export const vaccinationReminder = tool({
   }),
   execute: async ({ ageInMonths, previousVaccinations = [] }) => {
     // Standard Bangladesh EPI (Expanded Program on Immunization) schedule
+    // Ages in weeks for consistency: birth=0, 6w, 10w, 14w, 36w(9mo), 60w(15mo)
     const vaccinationSchedule = [
       { age: 0, ageLabel: "At birth", vaccines: ["BCG", "OPV-0", "Hepatitis B-1"] },
-      { age: 6, ageLabel: "6 weeks", vaccines: ["Pentavalent-1", "OPV-1", "PCV-1"] },
-      { age: 10, ageLabel: "10 weeks", vaccines: ["Pentavalent-2", "OPV-2", "PCV-2"] },
-      { age: 14, ageLabel: "14 weeks", vaccines: ["Pentavalent-3", "OPV-3", "PCV-3", "IPV"] },
+      { age: 1.5, ageLabel: "6 weeks", vaccines: ["Pentavalent-1", "OPV-1", "PCV-1"] },
+      { age: 2.5, ageLabel: "10 weeks", vaccines: ["Pentavalent-2", "OPV-2", "PCV-2"] },
+      { age: 3.5, ageLabel: "14 weeks", vaccines: ["Pentavalent-3", "OPV-3", "PCV-3", "IPV"] },
       { age: 9, ageLabel: "9 months", vaccines: ["Measles-Rubella-1", "OPV-4"] },
       { age: 15, ageLabel: "15 months", vaccines: ["Measles-Rubella-2"] },
     ];

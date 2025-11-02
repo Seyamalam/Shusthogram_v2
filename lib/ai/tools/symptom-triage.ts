@@ -17,31 +17,30 @@ export const symptomTriage = tool({
   }),
   execute: async ({ symptoms, duration, severity, age, hasChronicConditions }) => {
     // Define emergency symptoms that require immediate attention
-    const emergencySymptoms = [
+    const emergencySymptoms = new Set([
       "chest pain", "difficulty breathing", "severe bleeding", "loss of consciousness",
       "severe head injury", "stroke symptoms", "seizure", "severe abdominal pain",
       "high fever with confusion", "inability to speak", "sudden vision loss"
-    ];
+    ]);
 
     // Define urgent symptoms requiring prompt medical attention
-    const urgentSymptoms = [
+    const urgentSymptoms = new Set([
       "high fever", "persistent vomiting", "severe diarrhea", "dehydration",
       "severe headache", "persistent pain", "difficulty urinating", "blood in urine",
       "blood in stool", "unusual bleeding", "severe rash"
-    ];
+    ]);
 
-    // Check for emergency symptoms
-    const hasEmergencySymptoms = symptoms.some(symptom =>
-      emergencySymptoms.some(emergency =>
-        symptom.toLowerCase().includes(emergency.toLowerCase())
-      )
+    // Normalize symptoms for efficient matching
+    const normalizedSymptoms = symptoms.map(s => s.toLowerCase());
+    
+    // Check for emergency symptoms (using efficient Set-based matching)
+    const hasEmergencySymptoms = normalizedSymptoms.some(symptom =>
+      Array.from(emergencySymptoms).some(emergency => symptom.includes(emergency))
     );
 
     // Check for urgent symptoms
-    const hasUrgentSymptoms = symptoms.some(symptom =>
-      urgentSymptoms.some(urgent =>
-        symptom.toLowerCase().includes(urgent.toLowerCase())
-      )
+    const hasUrgentSymptoms = normalizedSymptoms.some(symptom =>
+      Array.from(urgentSymptoms).some(urgent => symptom.includes(urgent))
     );
 
     // Determine urgency level
