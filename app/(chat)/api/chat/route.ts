@@ -22,10 +22,10 @@ import { entitlementsByUserType } from "@/lib/ai/entitlements";
 import type { ChatModel } from "@/lib/ai/models";
 import { type RequestHints, systemPrompt } from "@/lib/ai/prompts";
 import { myProvider } from "@/lib/ai/providers";
-import { createDocument } from "@/lib/ai/tools/create-document";
-import { getWeather } from "@/lib/ai/tools/get-weather";
-import { requestSuggestions } from "@/lib/ai/tools/request-suggestions";
-import { updateDocument } from "@/lib/ai/tools/update-document";
+import { symptomTriage } from "@/lib/ai/tools/symptom-triage";
+import { healthFacilityLocator } from "@/lib/ai/tools/health-facility-locator";
+import { healthRecord, vaccinationReminder } from "@/lib/ai/tools/health-record";
+import { healthEducation, diseaseOutbreakAlert } from "@/lib/ai/tools/health-education";
 import { isProductionEnvironment } from "@/lib/constants";
 import {
   createStreamId,
@@ -188,20 +188,21 @@ export async function POST(request: Request) {
             selectedChatModel === "chat-model-reasoning"
               ? []
               : [
-                  "getWeather",
-                  "createDocument",
-                  "updateDocument",
-                  "requestSuggestions",
+                  "symptomTriage",
+                  "healthFacilityLocator",
+                  "healthRecord",
+                  "vaccinationReminder",
+                  "healthEducation",
+                  "diseaseOutbreakAlert",
                 ],
           experimental_transform: smoothStream({ chunking: "word" }),
           tools: {
-            getWeather,
-            createDocument: createDocument({ session, dataStream }),
-            updateDocument: updateDocument({ session, dataStream }),
-            requestSuggestions: requestSuggestions({
-              session,
-              dataStream,
-            }),
+            symptomTriage,
+            healthFacilityLocator,
+            healthRecord,
+            vaccinationReminder,
+            healthEducation,
+            diseaseOutbreakAlert,
           },
           experimental_telemetry: {
             isEnabled: isProductionEnvironment,

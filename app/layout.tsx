@@ -7,9 +7,9 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://chat.vercel.ai"),
-  title: "Next.js Chatbot Template",
-  description: "Next.js chatbot template using the AI SDK.",
+  metadataBase: new URL("https://shusthogram.vercel.app"),
+  title: "ShusthoGram - AI Rural Health Navigator",
+  description: "ShusthoGram (শুস্থগ্রাম) - AI-powered health assistant for rural Bangladesh. Get symptom guidance, find health facilities, and access preventive health information.",
 };
 
 export const viewport = {

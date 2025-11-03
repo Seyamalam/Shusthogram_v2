@@ -1,10 +1,11 @@
-<a href="https://chat.vercel.ai/">
-  <img alt="Next.js 14 and App Router-ready AI chatbot." src="app/(chat)/opengraph-image.png">
-  <h1 align="center">Chat SDK</h1>
-</a>
+<h1 align="center">ShusthoGram (শুস্থগ্রাম)</h1>
 
 <p align="center">
-    Chat SDK is a free, open-source template built with Next.js and the AI SDK that helps you quickly build powerful chatbot applications.
+    <strong>The AI Rural Health Navigator for Bangladesh</strong>
+</p>
+
+<p align="center">
+    ShusthoGram, meaning "Healthy Village," is an AI-powered health assistant designed to bridge the healthcare gap in rural Bangladesh. It provides accessible health guidance, facility navigation, and digital health records through a simple chat interface.
 </p>
 
 <p align="center">
@@ -18,39 +19,43 @@
 
 ## Features
 
-- [Next.js](https://nextjs.org) App Router
-  - Advanced routing for seamless navigation and performance
-  - React Server Components (RSCs) and Server Actions for server-side rendering and increased performance
-- [AI SDK](https://ai-sdk.dev/docs/introduction)
-  - Unified API for generating text, structured objects, and tool calls with LLMs
-  - Hooks for building dynamic chat and generative user interfaces
-  - Supports xAI (default), OpenAI, Fireworks, and other model providers
-- [shadcn/ui](https://ui.shadcn.com)
-  - Styling with [Tailwind CSS](https://tailwindcss.com)
-  - Component primitives from [Radix UI](https://radix-ui.com) for accessibility and flexibility
-- Data Persistence
-  - [Neon Serverless Postgres](https://vercel.com/marketplace/neon) for saving chat history and user data
-  - [Vercel Blob](https://vercel.com/storage/blob) for efficient file storage
-- [Auth.js](https://authjs.dev)
-  - Simple and secure authentication
+### Core Health Services
+- **AI Symptom Triage**: Conversational AI to assess symptoms and guide users to appropriate care levels
+- **Health Facility Locator**: Find nearby hospitals, clinics, health centers, pharmacies, and diagnostic centers
+- **Digital Health Records**: Voice-powered personal health record management
+- **Preventive Health Education**: Information on maternal health, child nutrition, disease prevention
+- **Vaccination Reminders**: Track and remind about child vaccination schedules
+- **Disease Outbreak Alerts**: Regional health alerts and outbreak information
 
-## Model Providers
+### Technology Stack
+- [Next.js](https://nextjs.org) App Router for robust web application
+- [AI SDK](https://ai-sdk.dev/docs/introduction) with tool calling for health-specific functions
+- [shadcn/ui](https://ui.shadcn.com) for accessible user interface
+- [Neon Serverless Postgres](https://vercel.com/marketplace/neon) for health data storage
+- [Auth.js](https://authjs.dev) for secure authentication
 
-This template uses the [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) to access multiple AI models through a unified interface. The default configuration includes [xAI](https://x.ai) models (`grok-2-vision-1212`, `grok-3-mini`) routed through the gateway.
+## Problem Statement
 
-### AI Gateway Authentication
+Bangladesh faces a critical healthcare disparity:
+- 66% of the population lives in rural areas but only 25% of health workers serve them
+- Doctor-to-patient ratio is 7:10,000 (WHO recommends 22.8:10,000)
+- 74% of healthcare costs are out-of-pocket, pushing families into poverty
+- Lack of digital health infrastructure and fragmented health records
 
-**For Vercel deployments**: Authentication is handled automatically via OIDC tokens.
+## Solution
 
-**For non-Vercel deployments**: You need to provide an AI Gateway API key by setting the `AI_GATEWAY_API_KEY` environment variable in your `.env.local` file.
+ShusthoGram addresses these challenges by:
+1. **Reducing barriers to care**: Accessible through simple chat interface
+2. **Intelligent triage**: Guides users to appropriate care level, reducing unnecessary hospital visits
+3. **Building health data infrastructure**: Creates digital health records at the individual level
+4. **Preventive focus**: Proactive health education and disease prevention
 
-With the [AI SDK](https://ai-sdk.dev/docs/introduction), you can also switch to direct LLM providers like [OpenAI](https://openai.com), [Anthropic](https://anthropic.com), [Cohere](https://cohere.com/), and [many more](https://ai-sdk.dev/providers/ai-sdk-providers) with just a few lines of code.
+## Target Users
 
-## Deploy Your Own
-
-You can deploy your own version of the Next.js AI Chatbot to Vercel with one click:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/templates/next.js/nextjs-ai-chatbot)
+Primary beneficiaries:
+- 112 million rural residents of Bangladesh
+- Particular focus on women and children who face the greatest healthcare barriers
+- Secondary: Rural healthcare workers and urban tertiary hospitals (reduced patient load)
 
 ## Running locally
 
